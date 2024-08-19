@@ -203,7 +203,8 @@ const employee = {
     postalCode: 24124,
   },
 };
-
+// DRY =  DONT REPEAT YOURSELF
+// coding principles
 const {
   employeeName,
   age,
