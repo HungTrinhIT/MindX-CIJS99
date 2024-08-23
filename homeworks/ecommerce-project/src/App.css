@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1128px;
+  margin: 0 auto;
+}
+
+.main {
+  display: flex;
+  gap: 16px;
+}
+
+.size-container {
+  width: 190px;
+}
+
+.products-container {
+}
+
+.product-list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  width: 200px;
+}
+
+.product-item-img {
+  width: 100%;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.product-item-img img {
+  object-fit: cover;
+}
