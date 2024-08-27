@@ -1,17 +1,17 @@
-import './App.css';
 import ProductList from './components/ProductList/ProductList';
 import SizeFilter from './components/SizeFilter/SizeFilter';
+import Header from './components/Header/Header';
+
+import './App.css';
 
 function App() {
-
-  // JSX: Javascript XML
   return (
     <div className='container'>
-      <h1>Trang web mua bán quần áo</h1>
-      <div className='main'>
+      <Header />
+      <main className='main'>
         <SizeFilter />
         <ProductList />
-      </div>
+      </main>
     </div>
   );
 }

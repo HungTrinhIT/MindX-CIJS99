@@ -4,6 +4,8 @@
   padding: 0;
 }
 
+
+
 .container {
   max-width: 1128px;
   margin: 0 auto;
@@ -14,12 +16,6 @@
   gap: 16px;
 }
 
-.size-container {
-  width: 190px;
-}
-
-.products-container {
-}
 
 .product-list {
   display: flex;

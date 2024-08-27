@@ -1,0 +1,20 @@
+.size-container {
+  width: 190px;
+}
+
+.size-list {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.size-item {
+  line-height: 24px;
+  text-align: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 100rem;
+  background-color: #000;
+  color: #ffffff;
+  font-size: 12px;
+}
