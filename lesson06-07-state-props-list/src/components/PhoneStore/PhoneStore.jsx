@@ -71,13 +71,42 @@ const PhoneStore = () => {
     setSelectedProduct(product);
   };
 
+  const handleAddToCart = (productId) => {
+    // Tìm kiếm sản phẩm muốn thêm ở trong list SP
+    const product = products.find((product) => product.id === productId);
+
+    // 0. Kiểm tra xem SP đã tồn tại trong Cart hay chưa
+
+    const indexOfSelectedProduct = cart.findIndex(
+      (product) => product.data.id === productId
+    );
+    const isExist = indexOfSelectedProduct !== -1;
+
+    const newCart = [...cart];
+
+    // 1. ĐÃ tồn tại => cập nhật quantity
+    if (isExist) {
+      newCart[indexOfSelectedProduct].quantity += 1;
+    } else {
+      // 2. Chưa tổn tại => Tạo mới cartItem => push vào cart
+      const cartItem = {
+        data: product,
+        quantity: 1,
+      };
+      newCart.push(cartItem);
+    }
+
+    setCart(newCart);
+  };
+
   return (
     <div>
-      <Header />
+      <Header totalItemsCount={cart.length} />
       <div className='container'>
         <ProductList
           products={products}
           handleSelectProduct={handleSelectProduct}
+          handleAddToCart={handleAddToCart}
         />
         <ProductDetail product={selectedProduct} />
       </div>

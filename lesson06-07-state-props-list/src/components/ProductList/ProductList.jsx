@@ -3,7 +3,7 @@ import Product from '../Product/Product';
 
 // Danh sách objects -> Danh sách nhưng cái mảng Component
 const ProductList = (props) => {
-  const { products = [], handleSelectProduct } = props;
+  const { products = [], handleSelectProduct, handleAddToCart } = props;
 
   // Phải có unique key cho child element
   // khi dùng map
@@ -13,6 +13,7 @@ const ProductList = (props) => {
       <Product
         product={product}
         handleSelectProduct={handleSelectProduct}
+        handleAddToCart={handleAddToCart}
         key={product.id}
       />
     ));

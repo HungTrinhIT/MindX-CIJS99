@@ -1,14 +1,16 @@
 import React from 'react';
 
 const Product = (props) => {
-  const { product, handleSelectProduct } = props;
+  const { product, handleSelectProduct, handleAddToCart } = props;
   const { thumbnail, title, price, id } = product;
 
   const handleClickViewDetailProduct = () => {
     handleSelectProduct(id);
   };
 
-  const handleClickAddToCart = () => {};
+  const handleClickAddToCart = () => {
+    handleAddToCart(id);
+  };
 
   return (
     <div className='card'>
