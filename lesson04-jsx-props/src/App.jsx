@@ -33,7 +33,6 @@ function App() {
           textAlign: 'center',
           backgroundColor: 'red',
           color: 'white',
-          marginBottom: '16px',
         }}>
         Có {studentCount} học sinh
       </p>
