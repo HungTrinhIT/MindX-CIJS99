@@ -7,6 +7,7 @@ const ProductList = (props) => {
 
   // Phải có unique key cho child element
   // khi dùng map
+  // Array Prototype
   const listProduct =
     products &&
     products.map((product) => (

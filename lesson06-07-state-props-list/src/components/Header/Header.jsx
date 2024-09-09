@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = (props) => {
-  const { totalItemsCount } = props;
+  const { totalCartItems } = props;
   return (
     <nav className='navbar navbar-expand-lg bg-body-tertiary container-fluid'>
       <div className='container-fluid'>
@@ -32,7 +32,7 @@ const Header = (props) => {
             </li>
           </ul>
           <div>
-            <span>Giỏ hàng ({totalItemsCount})</span>
+            <span>Giỏ hàng ({totalCartItems})</span>
           </div>
         </div>
       </div>

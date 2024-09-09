@@ -55,7 +55,7 @@ const mockProductsData = [
 
 // cart => mảng nhưng cartItem
 /*
-   { 
+    { 
       data: {}
       quantity: 1
     }
@@ -63,8 +63,8 @@ const mockProductsData = [
 
 const PhoneStore = () => {
   const [products, setProducts] = useState(mockProductsData);
-  const [cart, setCart] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [cart, setCart] = useState([]);
 
   const handleSelectProduct = (productId) => {
     const product = products.find((product) => product.id === productId);
@@ -72,28 +72,32 @@ const PhoneStore = () => {
   };
 
   const handleAddToCart = (productId) => {
-    // Tìm kiếm sản phẩm muốn thêm ở trong list SP
-    const product = products.find((product) => product.id === productId);
+    // Step 1: Tìm kiếm SP mà người dùng muốn thêm
+    const addingProduct = products.find((product) => product.id === productId);
 
-    // 0. Kiểm tra xem SP đã tồn tại trong Cart hay chưa
+    // Step 2: Kiểm tra xem sản phẩm đã tồn tại
+    // trong GIỎ HÀNG hay chưa?
+    // a. TRUE -> update quantity
+    // b. FALSE -> create new cartItem => push to cart
 
-    const indexOfSelectedProduct = cart.findIndex(
+    const addingProductIndexInCart = cart.findIndex(
       (product) => product.data.id === productId
     );
-    const isExist = indexOfSelectedProduct !== -1;
+
+    const isExistProductInCart = addingProductIndexInCart !== -1;
 
     const newCart = [...cart];
 
-    // 1. ĐÃ tồn tại => cập nhật quantity
-    if (isExist) {
-      newCart[indexOfSelectedProduct].quantity += 1;
+    if (isExistProductInCart) {
+      // a. TRUE -> update quantity
+      newCart[addingProductIndexInCart].quantity += 1;
     } else {
-      // 2. Chưa tổn tại => Tạo mới cartItem => push vào cart
-      const cartItem = {
-        data: product,
+      // b. FALSE -> create new cartItem => push to cart
+      const newCartItem = {
+        data: addingProduct,
         quantity: 1,
       };
-      newCart.push(cartItem);
+      newCart.push(newCartItem);
     }
 
     setCart(newCart);
@@ -101,7 +105,7 @@ const PhoneStore = () => {
 
   return (
     <div>
-      <Header totalItemsCount={cart.length} />
+      <Header totalCartItems={cart.length} />
       <div className='container'>
         <ProductList
           products={products}

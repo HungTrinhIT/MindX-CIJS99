@@ -4,13 +4,10 @@ const Product = (props) => {
   const { product, handleSelectProduct, handleAddToCart } = props;
   const { thumbnail, title, price, id } = product;
 
-  const handleClickViewDetailProduct = () => {
-    handleSelectProduct(id);
-  };
-
-  const handleClickAddToCart = () => {
-    handleAddToCart(id);
-  };
+  // Cach 1
+  // const handleClickViewDetailProduct = () => {
+  //   handleSelectProduct(id);
+  // };
 
   return (
     <div className='card'>
@@ -19,14 +16,20 @@ const Product = (props) => {
         <h5 className='card-title'>{title}</h5>
         <p className='card-text'>{price}</p>
         <div className='d-flex align-items-center gap-2'>
-          <button
+          {/* Cach 1 <button
             className='btn btn-success text-nowrap'
             onClick={handleClickViewDetailProduct}>
             Xem chi tiết
+          </button> */}
+          <button
+            className='btn btn-success text-nowrap'
+            onClick={() => handleSelectProduct(id)}>
+            Xem chi tiết
           </button>
+
           <button
             className='btn btn-danger text-nowrap'
-            onClick={handleClickAddToCart}>
+            onClick={() => handleAddToCart(id)}>
             Thêm vào giỏ hàng
           </button>
         </div>
