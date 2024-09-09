@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatCurrencyFromNumberToVND } from '../../utils/currency';
 
 const Product = (props) => {
   const { product, handleSelectProduct, handleAddToCart } = props;
@@ -14,7 +15,7 @@ const Product = (props) => {
       <img src={thumbnail} className='card-img-top p-2' alt={title} />
       <div className='card-body'>
         <h5 className='card-title'>{title}</h5>
-        <p className='card-text'>{price}</p>
+        <p className='card-text'>{formatCurrencyFromNumberToVND(price)}</p>
         <div className='d-flex align-items-center gap-2'>
           {/* Cach 1 <button
             className='btn btn-success text-nowrap'

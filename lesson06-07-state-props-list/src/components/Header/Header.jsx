@@ -31,7 +31,12 @@ const Header = (props) => {
               </a>
             </li>
           </ul>
-          <div>
+          <div
+            style={{
+              cursor: 'pointer',
+            }}
+            data-bs-toggle='modal'
+            data-bs-target='#cartModal'>
             <span>Giỏ hàng ({totalCartItems})</span>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../Header/Header';
 import ProductList from '../ProductList/ProductList';
 import ProductDetail from '../ProductDetail/ProductDetail';
+import CartModal from '../CartModal/CartModal';
 
 // Data binding
 // One-way data binding !== vuejs svelte angular
@@ -103,6 +104,16 @@ const PhoneStore = () => {
     setCart(newCart);
   };
 
+  const increaseQuantity = (productId) => {
+    console.log('🚀 ~ increaseQuantity ~ productId:', productId);
+  };
+  const decreaseQuantity = (productId) => {
+    console.log('🚀 ~ decreaseQuantity ~ productId:', productId);
+  };
+  const handleDeleteProductFromCart = (productId) => {
+    console.log('🚀 ~ handleDeleteProductFromCart ~ productId:', productId);
+  };
+
   return (
     <div>
       <Header totalCartItems={cart.length} />
@@ -114,6 +125,12 @@ const PhoneStore = () => {
         />
         <ProductDetail product={selectedProduct} />
       </div>
+      <CartModal
+        cart={cart}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+        handleDeleteProductFromCart={handleDeleteProductFromCart}
+      />
     </div>
   );
 };
