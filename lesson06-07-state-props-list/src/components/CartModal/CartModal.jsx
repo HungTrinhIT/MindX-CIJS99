@@ -4,8 +4,9 @@ import { formatCurrencyFromNumberToVND } from '../../utils/currency';
 const CartModal = (props) => {
   const {
     cart = [],
-    increaseQuantity,
-    decreaseQuantity,
+    // increaseQuantity,
+    // decreaseQuantity,
+    updateCartQuantity,
     handleDeleteProductFromCart,
   } = props;
   const isEmpty = cart.length === 0;
@@ -23,6 +24,9 @@ const CartModal = (props) => {
       const { data, quantity } = cartItem;
       const { id, title, price, thumbnail } = data;
       const totalPricePerProduct = quantity * price;
+
+      const isDisabledDecreaseButton = quantity === 1;
+
       return (
         <tr key={id}>
           <th scope='row'>{index + 1}</th>
@@ -34,13 +38,14 @@ const CartModal = (props) => {
             <div className='d-flex align-items-center gap-2'>
               <button
                 className='btn btn-primary'
-                onClick={() => decreaseQuantity(id)}>
+                disabled={isDisabledDecreaseButton}
+                onClick={() => updateCartQuantity(id, -1)}>
                 -
               </button>
               <span>{quantity}</span>
               <button
                 className='btn btn-primary'
-                onClick={() => increaseQuantity(id)}>
+                onClick={() => updateCartQuantity(id, +1)}>
                 +
               </button>
             </div>

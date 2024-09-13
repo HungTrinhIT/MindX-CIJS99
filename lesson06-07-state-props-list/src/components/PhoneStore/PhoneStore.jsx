@@ -104,14 +104,47 @@ const PhoneStore = () => {
     setCart(newCart);
   };
 
-  const increaseQuantity = (productId) => {
-    console.log('🚀 ~ increaseQuantity ~ productId:', productId);
+  // const increaseQuantity = (productId) => {
+  //   const increasingCartIndex = cart.findIndex(
+  //     (cartItem) => cartItem.data.id === productId
+  //   );
+
+  //   const newCart = [...cart];
+
+  //   newCart[increasingCartIndex].quantity += 1;
+
+  //   setCart(newCart);
+  // };
+  // const decreaseQuantity = (productId) => {
+  //   const decreasingCartIndex = cart.findIndex(
+  //     (cartItem) => cartItem.data.id === productId
+  //   );
+
+  //   const newCart = [...cart];
+
+  //   newCart[decreasingCartIndex].quantity += 1;
+
+  //   setCart(newCart);
+  // };
+
+  // Cách 2: Dùng chung 1 hàm cho increase và decrease quantity
+  const updateCartQuantity = (productId, value) => {
+    const updatingCartIndex = cart.findIndex(
+      (cartItem) => cartItem.data.id === productId
+    );
+
+    const newCart = [...cart];
+
+    newCart[updatingCartIndex].quantity += value;
+
+    setCart(newCart);
   };
-  const decreaseQuantity = (productId) => {
-    console.log('🚀 ~ decreaseQuantity ~ productId:', productId);
-  };
+
   const handleDeleteProductFromCart = (productId) => {
-    console.log('🚀 ~ handleDeleteProductFromCart ~ productId:', productId);
+    const filterCart = cart.filter(
+      (cartItem) => cartItem.data.id !== productId
+    );
+    setCart(filterCart);
   };
 
   return (
@@ -127,8 +160,9 @@ const PhoneStore = () => {
       </div>
       <CartModal
         cart={cart}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
+        // increaseQuantity={increaseQuantity}
+        // decreaseQuantity={decreaseQuantity}
+        updateCartQuantity={updateCartQuantity}
         handleDeleteProductFromCart={handleDeleteProductFromCart}
       />
     </div>
