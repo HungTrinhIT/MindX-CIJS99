@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+// Khi props editContact thay đổi => cập nhật state cho form value formValues
 const ContactForm = (props) => {
-  const { handleAddContact } = props;
+  const {
+    handleAddContact,
+    editContact,
+    handleUpdateContact,
+    clearUpdateContact,
+  } = props;
+
+  const isEditContact = editContact !== null;
 
   const [formValues, setFormValues] = useState({
     name: '',
@@ -11,6 +19,19 @@ const ContactForm = (props) => {
     contactType: '',
   });
 
+  useEffect(() => {
+    if (editContact !== null) {
+      setFormValues(editContact);
+    } else {
+      setFormValues({
+        name: '',
+        email: '',
+        phone: '',
+        contactType: '',
+      });
+    }
+  }, [editContact]);
+
   const handleOnChange = (e) => {
     const { value, name } = e.target;
     setFormValues({ ...formValues, [name]: value });
@@ -18,6 +39,12 @@ const ContactForm = (props) => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+
+    if (editContact) {
+      // Define logic update contact
+      handleUpdateContact(formValues);
+      return;
+    }
 
     const newContact = {
       ...formValues,
@@ -38,7 +65,7 @@ const ContactForm = (props) => {
 
   return (
     <div>
-      <h6>Add contact</h6>
+      <h6>{isEditContact ? 'Edit contact' : 'Add contact'}</h6>
       <form className='flex flex-col gap-2' onSubmit={handleSubmitForm}>
         <input
           placeholder='Name'
@@ -85,7 +112,10 @@ const ContactForm = (props) => {
             Professional
           </label>
         </div>
-        <button type='submit'>Add contact</button>
+        <button type='submit'>
+          {isEditContact ? 'Update contact' : 'Add contact'}
+        </button>
+        {isEditContact && <button onClick={clearUpdateContact}>Clear</button>}
       </form>
     </div>
   );

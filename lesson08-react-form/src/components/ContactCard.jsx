@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ContactCard = ({ data }) => {
-  const { name, phone, email, contactType } = data;
+const ContactCard = ({ data, onSelectContactToEdit }) => {
+  const { name, phone, email, contactType, id } = data;
 
   return (
     <div className='border-[1px] border-neutral-900 p-6'>
@@ -11,6 +11,8 @@ const ContactCard = ({ data }) => {
       <p>
         <b>Type</b>:{contactType}
       </p>
+      <button>Delete</button>
+      <button onClick={() => onSelectContactToEdit(id)}>Edit</button>
     </div>
   );
 };
