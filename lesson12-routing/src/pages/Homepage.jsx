@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import ManageGithubUsers from '../components/ManageGithubUsers';
 import SearchInput from '../components/SearchInput';
-
-const BASE_URL = 'https://api.github.com';
+import GithubUserAPI from '../api/githubUserAPI';
 
 const Homepage = () => {
   const [users, setUsers] = useState([]);
@@ -16,19 +14,13 @@ const Homepage = () => {
   };
 
   const handleSearchGithubUsers = async () => {
-    const endpoint = `${BASE_URL}/search/users`;
-
     setQueryInProgress(true);
     setQueryError(null);
     try {
-      const apiResponse = await axios.get(endpoint, {
-        params: {
-          q: searchValue,
-          per_page: 50,
-        },
-      });
-
-      setUsers(apiResponse.data.items);
+      const queryGithubUserResponse = await GithubUserAPI.queryGithubUser(
+        searchValue
+      );
+      setUsers(queryGithubUserResponse.data.items);
     } catch (error) {
       console.log('Something went wrongs:', error);
       setQueryError(error.response.data.message);

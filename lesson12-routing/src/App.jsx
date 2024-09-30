@@ -1,16 +1,16 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header';
 import Homepage from './pages/Homepage';
 import About from './pages/AboutPage';
 import GithubUserDetailPage from './pages/GithubUserDetailPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 import './App.css';
-import NotFoundPage from './pages/NotFoundPage';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <>
       <Header />
       <main className='container mt-4'>
         <Routes>
@@ -20,7 +20,7 @@ const App = () => {
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </main>
-    </BrowserRouter>
+    </>
   );
 };
 

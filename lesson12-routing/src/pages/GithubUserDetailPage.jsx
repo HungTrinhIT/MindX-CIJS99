@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import GithubUserAPI from '../api/githubUserAPI';
 
 const GithubUserDetailPage = (props) => {
   const [user, setUser] = useState({});
@@ -15,9 +15,7 @@ const GithubUserDetailPage = (props) => {
     setFetchUserInProgress(true);
     setFetchUserInError(null);
     try {
-      const apiResponse = await axios.get(
-        `https://api.github.com/users/${username}`
-      );
+      const apiResponse = await GithubUserAPI.fetchGithubUserDetail(username);
       const userData = apiResponse.data;
       setUser(userData);
     } catch (error) {
